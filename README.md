@@ -1,8 +1,40 @@
-# Renewable Assets Database
-I accomplished this modest renewable asset management database project using SQL Server and SSMS. The idea is to accumulate and manipulate the renewable assets records in the different Swedish counties taking into consideration their names, locations, dates created, revenues, reviews, and their respective CEOs.
+# Development of an Automated Data Pipeline for Renewable Asset Management
+Project Idea: Development of an Automated Data Pipeline for Renewable Asset Management
 
-The user is able to export a report into excel for further analysis or create a project in Asp.Net.Core with the help of C# but with SQL queries applied in extracting the required information.
+## Objective: To design and implement an efficient data management system that integrates daily trade and cash flow data from six renewable assets into a centralised database, and prepares the data for use in Power BI reports.
 
-One can consider using SSIS for importing data from various sources, SSAS for analyzing data in different ways, and SSRS for creating professional-looking reports. Additionally, adding more data such as energy output, maintenance costs, or carbon footprint can provide a more comprehensive view of renewable assets.
+## Database Structure for Daily Data:
 
-It's also important to validate data entered into the database and add user authentication and authorization if multiple users will access the database. Encapsulating SQL queries in stored procedures can provide better performance, security, and maintainability. 
+### Create a database with a separate table for each of the six assets to store the daily trade and cash flow data.
+Each table should have columns for the relevant data points such as asset ID, date, transaction type, cash flow amount, and trade details.
+Use a primary key for each table to ensure data integrity and efficient querying.
+
+### Minimising Data Loss:
+
+Implement a data backup strategy, such as regular backups to a secondary storage location or cloud-based storage, to minimise the risk of data loss.
+Ensure data validation checks are in place to identify and resolve any data discrepancies or errors.
+
+### Efficient Data Integration:
+
+Develop an automated script that retrieves the 12 files from the Downing SFTP server every morning between 7am to 8am.
+Use an ETL (extract, transform, load) process to transform and load the data from the daily files into the relevant tables in the database.
+Use a version control system to track changes to the data and prevent duplication.
+
+### Consolidated File Storage:
+
+Create a separate table in the database to store the reconciled data from the monthly consolidated file.
+Use a primary key to ensure data integrity and efficient querying.
+
+### Preparing Data for Power BI Reporting:
+
+Develop a process to extract the required data from the database and transform it into a specific table format for use in Power BI reports.
+Use data visualisation tools to create reports that provide insights into asset performance and financial metrics.
+### Business Requirement Changes:
+
+Develop a change management process that ensures any changes to business requirements are thoroughly documented, reviewed, and tested before implementation.
+Conduct regular reviews of the data management system to identify areas for improvement and make necessary adjustments.
+
+### Integration of New Datasets:
+
+Develop a process to integrate new datasets into the existing architecture, ensuring that the new data is compatible with the current database structure and reporting requirements.
+Conduct thorough testing to ensure the new data does not negatively impact the performance or reliability of the existing system.
