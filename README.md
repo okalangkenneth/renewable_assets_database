@@ -7,7 +7,7 @@ To design and implement an efficient data management system that integrates dail
 
 ## Database Structure for Daily Data:
 
-### Create a database with a separate table for each of the six assets to store the daily trade and cash flow data.
+### Creating a database with a separate table for each of the Solar,Hydro,Wind and Bio assets to store the daily trade and cash flow data.
 Each table should have columns for the relevant data points such as asset ID, date, transaction type, cash flow amount, and trade details.
 Use a primary key for each table to ensure data integrity and efficient querying.
 
