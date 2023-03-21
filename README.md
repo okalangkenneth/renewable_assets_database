@@ -7,7 +7,7 @@ To design and implement an efficient data management system that integrates dail
 
 ## Database Structure for Daily Data:
 
-### Creating a database with a separate table for each of the Solar,Hydro,Wind,Biomass and Geothermal assets to store the daily trade and cash flow data.
+Creating a database with a separate table for each of the Solar,Hydro,Wind,Biomass and Geothermal assets to store the daily trade and cash flow data.
 
 ![image](https://user-images.githubusercontent.com/68539411/226671940-222c63f3-2c9b-4014-90ee-c7cc90ea5d88.png)
 
