@@ -5,7 +5,7 @@
 2. [Objective](#objective)
 3. [Database Structure for Daily Data](#database-structure-for-daily-data)
 4. [Minimising Data Loss](#minimising-data-loss)
-5. [Efficient Data Integration](#efficient-data-storage)
+5. [Efficient Data Integration](#efficient-data-integration)
 6. [Consolidated File Storage](#consolidated-file-storage)
 7. [Preparing Data for Power BI Reporting](#preparing-data-for-power-bi-reporting)
 8. [Business Requirement Changes](#business-requirement-changes)
