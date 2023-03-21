@@ -8,8 +8,8 @@
 5. [Efficient Data Integration](#efficient-data-storage)
 6. [Consolidated File Storage](#consolidated-file-storage)
 7. [Preparing Data for Power BI Reporting](#preparing-data-for-power-bi-reporting)
-8. [Business Requirement Changes](business-requirement-changes)
-9. [Integration of New Datasets](integration-of-new-datasets)
+8. [Business Requirement Changes](#business-requirement-changes)
+9. [Integration of New Datasets](#integration-of-new-datasets)
 
 
 ## Introduction:
