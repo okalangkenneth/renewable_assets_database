@@ -41,6 +41,7 @@ Implement a data backup strategy, such as regular backups to a secondary storage
 Ensure data validation checks are in place to identify and resolve any data discrepancies or errors.
 
 ### Efficient Data Integration:
+Data integration is the process of combining data from multiple sources to create a unified view of the data. The goal of efficient data integration is to minimize the time, cost, and complexity involved in integrating the data while ensuring the accuracy and completeness of the data.
 
 Develop an automated script that retrieves the 12 files from the downing SFTP server every morning between 7am to 8am.
 Use an ETL (extract, transform, load) process to transform and load the data from the daily files into the relevant tables in the database.
