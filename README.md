@@ -7,9 +7,14 @@ To design and implement an efficient data management system that integrates dail
 
 ## Database Structure for Daily Data:
 
-### Creating a database with a separate table for each of the Solar,Hydro,Wind and Bio assets to store the daily trade and cash flow data.
-Each table should have columns for the relevant data points such as asset ID, date, transaction type, cash flow amount, and trade details.
-Use a primary key for each table to ensure data integrity and efficient querying.
+### Creating a database with a separate table for each of the Solar,Hydro,Wind,Biomass and Geothermal assets to store the daily trade and cash flow data.
+
+![image](https://user-images.githubusercontent.com/68539411/226671940-222c63f3-2c9b-4014-90ee-c7cc90ea5d88.png)
+
+Each table has columns for the relevant data points such as asset ID, date, transaction type, cash flow amount, and trade details.
+
+![image](https://user-images.githubusercontent.com/68539411/226672226-8f33d974-93bc-41d9-907f-6d4f1f0b7cd8.png)
+
 
 ### Minimising Data Loss:
 
