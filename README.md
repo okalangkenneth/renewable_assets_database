@@ -23,7 +23,7 @@ Ensure data validation checks are in place to identify and resolve any data disc
 
 ### Efficient Data Integration:
 
-Develop an automated script that retrieves the 12 files from the Downing SFTP server every morning between 7am to 8am.
+Develop an automated script that retrieves the 12 files from the downing SFTP server every morning between 7am to 8am.
 Use an ETL (extract, transform, load) process to transform and load the data from the daily files into the relevant tables in the database.
 Use a version control system to track changes to the data and prevent duplication.
 
