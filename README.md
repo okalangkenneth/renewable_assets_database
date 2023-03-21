@@ -1,5 +1,5 @@
 # Development of an Automated Data Pipeline for Renewable Asset Management
-Project Idea: Development of an Automated Data Pipeline for Renewable Asset Management
+
 
 ## Objective: 
 
