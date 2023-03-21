@@ -1,11 +1,21 @@
 # Development of an Automated Data Pipeline for Renewable Asset Management
 
 ## Table of Contents:
+1. [Introduction](#introduction)
+2. [Objective](#objective)
+3. [Database Structure for Daily Data](#database-structure-for-daily-data)
+4. [Minimising Data Loss](#minimising-data-loss)
+5. [Efficient Data Integration](#efficient-data-storage)
+6. [Consolidated File Storage](#consolidated-file-storage)
+7. [Preparing Data for Power BI Reporting](#preparing-data-for-power-bi-reporting)
+8. [Business Requirement Changes](business-requirement-changes)
+9. [Integration of New Datasets](integration-of-new-datasets)
+
 
 ## Introduction:
 Renewable energy is on the rise, creating a need for effective asset management. An Automated Data Pipeline (ADP) automates data collection, processing, and analysis from various sources. An ADP can save time, increase accuracy, provide real-time insights, and optimize asset lifespan. The development of an ADP is crucial in the renewable energy industry for ensuring assets reach their full potential in the transition towards a cleaner, sustainable future.
 
-The project involves the development of an Automated Data Pipeline for Renewable Asset Management  a company that manages renewable energy assets. The pipeline will automate the collection, processing, and analysis of data from multiple sources, including trade files and cashflow files for each of the five assets, which are sent to the companys SFTP server every morning. The data is used to monitor the performance of the assets and identify any issues.
+The project involves the development of an Automated Data Pipeline for Renewable Asset Management for a company that manages renewable energy assets. The pipeline will automate the collection, processing, and analysis of data from multiple sources, including trade files and cashflow files for each of the five assets, which are sent to the companys SFTP server every morning. The data is used to monitor the performance of the assets and identify any issues.
 
 A specific table format is required for Power BI reports. The development of an Automated Data Pipeline is necessary to handle the high volume and frequency of data received each day and to reconcile discrepancies between the daily and monthly consolidated files. The project aims to ensure that the data is accurate and consistent across all sources and formats and to streamline the data management process.
 
@@ -45,6 +55,7 @@ Use a primary key to ensure data integrity and efficient querying.
 
 Develop a process to extract the required data from the database and transform it into a specific table format for use in Power BI reports.
 Use data visualisation tools to create reports that provide insights into asset performance and financial metrics.
+
 ### Business Requirement Changes:
 
 Develop a change management process that ensures any changes to business requirements are thoroughly documented, reviewed, and tested before implementation.
