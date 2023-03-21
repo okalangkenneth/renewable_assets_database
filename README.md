@@ -1,7 +1,9 @@
 # Development of an Automated Data Pipeline for Renewable Asset Management
 Project Idea: Development of an Automated Data Pipeline for Renewable Asset Management
 
-## Objective: To design and implement an efficient data management system that integrates daily trade and cash flow data from six renewable assets into a centralised database, and prepares the data for use in Power BI reports.
+## Objective: 
+
+To design and implement an efficient data management system that integrates daily trade and cash flow data from six renewable assets into a centralised database, and prepares the data for use in Power BI reports.
 
 ## Database Structure for Daily Data:
 
