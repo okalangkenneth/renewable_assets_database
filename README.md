@@ -13,11 +13,12 @@
 
 
 ## Introduction:
-Renewable energy is on the rise, creating a need for effective asset management. An Automated Data Pipeline (ADP) automates data collection, processing, and analysis from various sources. An ADP can save time, increase accuracy, provide real-time insights, and optimize asset lifespan. The development of an ADP is crucial in the renewable energy industry for ensuring assets reach their full potential in the transition towards a cleaner, sustainable future.
 
-The project involves the development of an Automated Data Pipeline for Renewable Asset Management for a company that manages renewable energy assets. The pipeline will automate the collection, processing, and analysis of data from multiple sources, including trade files and cashflow files for each of the five assets, which are sent to the companys SFTP server every morning. The data is used to monitor the performance of the assets and identify any issues.
+As the renewable energy industry continues to grow, effective asset management becomes increasingly crucial. An Automated Data Pipeline (ADP) presents an innovative solution that can automate data collection, processing, and analysis from various sources. With the help of an ADP, companies can save time, increase accuracy, gain real-time insights, and optimize asset lifespan. 
 
-A specific table format is required for Power BI reports. The development of an Automated Data Pipeline is necessary to handle the high volume and frequency of data received each day and to reconcile discrepancies between the daily and monthly consolidated files. The project aims to ensure that the data is accurate and consistent across all sources and formats and to streamline the data management process.
+In this project, we aim to develop an Automated Data Pipeline for Renewable Asset Management for a company that manages renewable energy assets. Our goal is to automate the collection, processing, and analysis of data from multiple sources, including trade files and cashflow files, to monitor asset performance and identify any issues. We will ensure data accuracy and consistency across all sources and formats and reconcile discrepancies between daily and monthly consolidated files.
+
+Ultimately, the project aims to streamline data management and ensure that renewable assets reach their full potential, contributing to a cleaner and more sustainable future.
 
 
 ## Objective: 
