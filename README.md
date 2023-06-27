@@ -14,8 +14,6 @@
 
 ## Introduction:
 
-As the renewable energy industry continues to grow, effective asset management becomes increasingly crucial. An Automated Data Pipeline (ADP) presents an innovative solution that can automate data collection, processing, and analysis from various sources. With the help of an ADP, companies can save time, increase accuracy, gain real-time insights, and optimize asset lifespan. 
-
 In this project, we aim to develop an Automated Data Pipeline for Renewable Asset Management for a company that manages renewable energy assets. Our goal is to automate the collection, processing, and analysis of data from multiple sources, including trade files and cashflow files, to monitor asset performance and identify any issues. We will ensure data accuracy and consistency across all sources and formats and reconcile discrepancies between daily and monthly consolidated files.
 
 Ultimately, the project aims to streamline data management and ensure that renewable assets reach their full potential, contributing to a cleaner and more sustainable future.
