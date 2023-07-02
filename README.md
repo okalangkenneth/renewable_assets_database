@@ -16,28 +16,35 @@
 
 In this project, we aim to develop an Automated Data Pipeline for Renewable Asset Management for a company that manages renewable energy assets. Our goal is to automate the collection, processing, and analysis of data from multiple sources, including trade files and cashflow files, to monitor asset performance and identify any issues. We will ensure data accuracy and consistency across all sources and formats and reconcile discrepancies between daily and monthly consolidated files.
 
-Ultimately, the project aims to streamline data management and ensure that renewable assets reach their full potential, contributing to a cleaner and more sustainable future.
-
+The project aims to streamline data management and ensure that renewable assets reach their full potential, contributing to a cleaner and more sustainable future.
 
 ## Objective: 
 
-To design and implement an efficient data management system that integrates daily trade and cash flow data from six renewable assets into a centralised database, and prepares the data for use in Power BI reports.
+The objective of this project is to design and implement an efficient data management system that integrates daily trade and cash flow data from six renewable assets into a centralized database, and prepares the data for use in Power BI reports.
 
 ## Database Structure for Daily Data:
 
-Creating a database with a separate table for each of the Solar,Hydro,Wind,Biomass and Geothermal assets to store the daily trade and cash flow data.
+The database is structured with a separate table for each of the Solar, Hydro, Wind, Biomass, and Geothermal assets to store the daily trade and cash flow data. Each table has columns for the relevant data points such as asset ID, date, transaction type, cash flow amount, and trade details.
+
+Here is a diagram of the SQL server:
 
 ![image](https://user-images.githubusercontent.com/68539411/226671940-222c63f3-2c9b-4014-90ee-c7cc90ea5d88.png)
 
-Each table has columns for the relevant data points such as asset ID, date, transaction type, cash flow amount, and trade details.
+And here is a representation of the SQL file:
 
 ![image](https://user-images.githubusercontent.com/68539411/226672226-8f33d974-93bc-41d9-907f-6d4f1f0b7cd8.png)
 
 
 ### Minimising Data Loss:
 
-Implement a data backup strategy, such as regular backups to a secondary storage location or cloud-based storage, to minimise the risk of data loss.
-Ensure data validation checks are in place to identify and resolve any data discrepancies or errors.
+#### Regular Backups.
+One of the most common ways to minimize data loss is by regularly backing up your database. In SQL Server, you can use the BACKUP DATABASE command to create a full backup of your database. Here's an example:
+
+````
+BACKUP DATABASE RenewableAssetsDB
+TO DISK = 'D:\Backups\RenewableAssetsDB.bak';
+````
+
 
 ### Efficient Data Integration:
 Data integration is the process of combining data from multiple sources to create a unified view of the data. The goal of efficient data integration is to minimize the time, cost, and complexity involved in integrating the data while ensuring the accuracy and completeness of the data.
