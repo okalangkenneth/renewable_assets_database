@@ -38,7 +38,7 @@ And here is a representation of the SQL file:
 ## Minimising Data Loss:
 
 ### Regular Backups.
-One of the most common ways to minimize data loss is by regularly backing up your database. In SQL Server, you can use the BACKUP DATABASE command to create a full backup of your database. Here's an example:
+One of the most common ways to minimize data loss is by regularly backing up our database. In SQL Server, we use the BACKUP DATABASE command to create a full backup of your database. Here's an example:
 
 ````
 BACKUP DATABASE RenewableAssetsDB
@@ -47,7 +47,7 @@ TO DISK = 'D:\Backups\RenewableAssetsDB.bak';
 This command creates a backup of the RenewableAssetsDB database and stores it in the specified location.
 
 ### Data Validation.
-Data validation is another crucial aspect of minimizing data loss. This can be done at the database level using constraints. For example, you can use the NOT NULL constraint to ensure that a specific column in your table always has a value:
+Data validation is another crucial aspect of minimizing data loss. This can be done at the database level using constraints. For example, we use the NOT NULL constraint to ensure that a specific column in our table always has a value:
 
 ````
 CREATE TABLE Solar (
