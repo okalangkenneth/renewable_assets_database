@@ -73,11 +73,92 @@ Here's a simple diagram illustrating the concept of redundancy:
 
 
 ## Efficient Data Integration:
-Data integration is the process of combining data from multiple sources to create a unified view of the data. The goal of efficient data integration is to minimize the time, cost, and complexity involved in integrating the data while ensuring the accuracy and completeness of the data.
+Efficient data integration involves combining data from multiple sources to create a unified view of the data. This process can be achieved using various methods, including ETL (Extract, Transform, Load) processes, data pipelines, and data warehousing.
 
-Develop an automated script that retrieves the 12 files from the downing SFTP server every morning between 7am to 8am.
-Use an ETL (extract, transform, load) process to transform and load the data from the daily files into the relevant tables in the database.
-Use a version control system to track changes to the data and prevent duplication.
+### ETL Process.
+ETL is a type of data integration that involves:
+
+1. Extracting data from different source systems,
+2. Transforming it to fit operational needs (which can include quality levels),
+3. Loading it into the end target database or data warehouse.
+
+   We use a combination of INSERT INTO, SELECT, and JOIN statements to extract, transform, and load data like this:
+   
+````   
+-- Extract and Transform
+CREATE VIEW transformed_data AS
+SELECT 
+    a.asset_id, 
+    a.date, 
+    a.transaction_type, 
+    b.cash_flow_amount, 
+    a.trade_details
+FROM 
+    daily_trade_data AS a
+JOIN 
+    daily_cash_flow_data AS b ON a.asset_id = b.asset_id AND a.date = b.date;
+
+-- Load
+INSERT INTO consolidated_data
+SELECT * FROM transformed_data;
+````
+We first create a view that joins the daily_trade_data and daily_cash_flow_data tables on the asset_id and date columns. This view represents the transformed data. We then insert this transformed data into the consolidated_data table.
+
+### Data Pipelines.
+We create data pipelines using stored procedures. A stored procedure is a prepared SQL code that one can save and reuse like this:
+
+````
+-- Create a stored procedure
+CREATE PROCEDURE update_consolidated_data AS
+BEGIN
+    -- Extract and Transform
+    CREATE VIEW transformed_data AS
+    SELECT 
+        a.asset_id, 
+        a.date, 
+        a.transaction_type, 
+        b.cash_flow_amount, 
+        a.trade_details
+    FROM 
+        daily_trade_data AS a
+    JOIN 
+        daily_cash_flow_data AS b ON a.asset_id = b.asset_id AND a.date = b.date;
+
+    -- Load
+    INSERT INTO consolidated_data
+    SELECT * FROM transformed_data;
+
+    -- Clean up
+    DROP VIEW transformed_data;
+END;
+````
+In this example, we create a stored procedure that performs the ETL process. This stored procedure can be called as part of a data pipeline to update the consolidated_data table with the latest data.
+
+### Data Warehousing
+We create a data warehouse by creating a separate database and using INSERT INTO SELECT statements to load data from the source databases into the data warehouse. Here's an example:
+
+````
+-- Create a new database for the data warehouse
+CREATE DATABASE RenewableAssetsDW;
+
+-- Use the data warehouse database
+USE RenewableAssetsDW;
+
+-- Create a table for the consolidated data
+CREATE TABLE consolidated_data (
+    asset_id INT,
+    date DATE,
+    transaction_type VARCHAR(255),
+    cash_flow_amount FLOAT,
+    trade_details VARCHAR(255)
+);
+
+-- Load data from the source database into the data warehouse
+INSERT INTO consolidated_data
+SELECT * FROM RenewableAssetsDB.dbo.consolidated_data;
+````
+In this example, we first create a new database for the data warehouse. We then create a table for the consolidated data and load data from the source database into this table.
+
 
 ## Consolidated File Storage:
 
