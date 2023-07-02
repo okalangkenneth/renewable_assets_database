@@ -44,16 +44,42 @@ One of the most common ways to minimize data loss is by regularly backing up you
 BACKUP DATABASE RenewableAssetsDB
 TO DISK = 'D:\Backups\RenewableAssetsDB.bak';
 ````
+This command creates a backup of the RenewableAssetsDB database and stores it in the specified location.
+
+### Data Validation.
+Data validation is another crucial aspect of minimizing data loss. This can be done at the database level using constraints. For example, you can use the NOT NULL constraint to ensure that a specific column in your table always has a value:
+
+````
+CREATE TABLE Solar (
+    ID int NOT NULL,
+    Date date NOT NULL,
+    TransactionType varchar(255) NOT NULL,
+    CashFlowAmount float NOT NULL,
+    TradeDetails varchar(255)
+);
+````
+In this example, the NOT NULL constraint is used to ensure that the ID, Date, TransactionType, and CashFlowAmount columns always have values. If a user tries to insert a record without a value for these columns, the database will return an error.
+
+### Redundancy
+Redundancy is another strategy for minimizing data loss. This involves storing copies of your data in multiple locations. In a SQL Server environment, you can achieve this using database mirroring or Always On availability groups.
+
+Here's a simple diagram illustrating the concept of redundancy:
+
+    +----------------+     +----------------+
+    |                |     |                |
+    |  Primary DB    |<--->|  Secondary DB  |
+    |                |     |                |
+    +----------------+     +----------------+
 
 
-### Efficient Data Integration:
+## Efficient Data Integration:
 Data integration is the process of combining data from multiple sources to create a unified view of the data. The goal of efficient data integration is to minimize the time, cost, and complexity involved in integrating the data while ensuring the accuracy and completeness of the data.
 
 Develop an automated script that retrieves the 12 files from the downing SFTP server every morning between 7am to 8am.
 Use an ETL (extract, transform, load) process to transform and load the data from the daily files into the relevant tables in the database.
 Use a version control system to track changes to the data and prevent duplication.
 
-### Consolidated File Storage:
+## Consolidated File Storage:
 
 Create a separate table in the database to store the reconciled data from the monthly consolidated file.
 Use a primary key to ensure data integrity and efficient querying.
@@ -63,12 +89,12 @@ Use a primary key to ensure data integrity and efficient querying.
 Develop a process to extract the required data from the database and transform it into a specific table format for use in Power BI reports.
 Use data visualisation tools to create reports that provide insights into asset performance and financial metrics.
 
-### Business Requirement Changes:
+## Business Requirement Changes:
 
 Develop a change management process that ensures any changes to business requirements are thoroughly documented, reviewed, and tested before implementation.
 Conduct regular reviews of the data management system to identify areas for improvement and make necessary adjustments.
 
-### Integration of New Datasets:
+## Integration of New Datasets:
 
 Develop a process to integrate new datasets into the existing architecture, ensuring that the new data is compatible with the current database structure and reporting requirements.
 Conduct thorough testing to ensure the new data does not negatively impact the performance or reliability of the existing system.
