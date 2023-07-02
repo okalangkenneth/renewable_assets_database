@@ -162,20 +162,139 @@ In this example, we first create a new database for the data warehouse. We then 
 
 ## Consolidated File Storage:
 
-Create a separate table in the database to store the reconciled data from the monthly consolidated file.
-Use a primary key to ensure data integrity and efficient querying.
+We sreate a separate table in the database to store the reconciled data from the monthly consolidated file.
+Here is how we create a consolidated storage.
 
-### Preparing Data for Power BI Reporting:
+````
+-- Create a new table for consolidated data
+CREATE TABLE ConsolidatedData (
+    AssetID int,
+    Date date,
+    TransactionType varchar(255),
+    CashFlowAmount float,
+    TradeDetails varchar(255),
+    PRIMARY KEY (AssetID, Date)
+);
 
-Develop a process to extract the required data from the database and transform it into a specific table format for use in Power BI reports.
-Use data visualisation tools to create reports that provide insights into asset performance and financial metrics.
+-- Insert data from different asset tables into the consolidated data table
+INSERT INTO ConsolidatedData
+SELECT * FROM Solar
+UNION ALL
+SELECT * FROM Hydro
+UNION ALL
+SELECT * FROM Wind
+UNION ALL
+SELECT * FROM Biomass
+UNION ALL
+SELECT * FROM Geothermal;
+````
+We first create a new table ConsolidatedData to store the consolidated data. The PRIMARY KEY constraint is used on AssetID and Date to ensure data integrity and efficient querying.
+
+Then, we use the UNION ALL operator to combine rows from different asset tables (Solar, Hydro, Wind, Biomass, Geothermal) and insert them into the ConsolidatedData table. The UNION ALL operator is used instead of UNION because UNION ALL allows duplicate values, which might be necessary if an asset has multiple transactions on the same date.
+
+This way, all the data from different assets is stored in a single table, making it easier to manage and query.
+
+## Preparing Data for Power BI Reporting:
+We prepare  data for Power BI reporting by creating views that shape the data into the desired format. Here's an example:
+
+````
+-- Create a view for Power BI reporting
+CREATE VIEW PowerBI_Report AS
+SELECT 
+    AssetID, 
+    Date, 
+    TransactionType, 
+    SUM(CashFlowAmount) as TotalCashFlow
+FROM 
+    ConsolidatedData
+GROUP BY 
+    AssetID, 
+    Date, 
+    TransactionType;
+````
+In this example, we create a view PowerBI_Report that groups the data by AssetID, Date, and TransactionType, and calculates the total cash flow for each group. This view can then be imported into Power BI for reporting.
+
+Once the view is created, we connect to our SQL Server database from Power BI, import the view, and use it to create various visualizations, such as line charts, bar graphs, or pie charts.
 
 ## Business Requirement Changes:
 
-Develop a change management process that ensures any changes to business requirements are thoroughly documented, reviewed, and tested before implementation.
-Conduct regular reviews of the data management system to identify areas for improvement and make necessary adjustments.
+
+We can handle business requirement changes by altering our database schema, updating our data processes, or creating new views. Here's an example:
+Let's say a new business requirement is to track the location of each renewable asset. WE would need to add a new column to your ConsolidatedData table to store this information:
+
+````
+-- Alter the ConsolidatedData table to add a new column
+ALTER TABLE ConsolidatedData
+ADD Location varchar(255);
+````
+In this example, we use the ALTER TABLE statement to add a new Location column to the ConsolidatedData table.
+
+If the business requirement change affects the data processes, we need to update our stored procedures or scripts. For example, if we need to include the location information in our Power BI reports, we would need to update the PowerBI_Report view:
+
+````
+-- Alter the PowerBI_Report view to include the Location column
+CREATE OR REPLACE VIEW PowerBI_Report AS
+SELECT 
+    AssetID, 
+    Date, 
+    TransactionType, 
+    Location,
+    SUM(CashFlowAmount) as TotalCashFlow
+FROM 
+    ConsolidatedData
+GROUP BY 
+    AssetID, 
+    Date, 
+    TransactionType,
+    Location;
+
+````
+In this example, we use the CREATE OR REPLACE VIEW statement to update the PowerBI_Report view to include the Location column.
+Lastly we document, review, and test our changes before implementing them. This helps ensure that our changes meet the new business requirements and don't introduce new issues.
+
+
 
 ## Integration of New Datasets:
 
-Develop a process to integrate new datasets into the existing architecture, ensuring that the new data is compatible with the current database structure and reporting requirements.
-Conduct thorough testing to ensure the new data does not negatively impact the performance or reliability of the existing system.
+We can integrate new datasets by creating new tables or adding new columns to existing tables, and then loading the new data into these tables or columns. Here's an example:
+Let's say we have a new dataset that contains information about the maintenance activities for each renewable asset. We could create a new table to store this data:
+````
+-- Create a new table for the maintenance data
+CREATE TABLE MaintenanceData (
+    AssetID int,
+    Date date,
+    MaintenanceActivity varchar(255),
+    MaintenanceCost float,
+    PRIMARY KEY (AssetID, Date)
+);
+````
+In this example, we create a new MaintenanceData table with columns for the AssetID, Date, MaintenanceActivity, and MaintenanceCost.
+We then load the maintenance data into this table using an INSERT INTO SELECT statement, a bulk insert operation, or any other method that's appropriate for your data and environment.
+
+If the new dataset needs to be included in Power BI reports, we would need to update our views or data processes accordingly. For example, we could create a new view that joins the ConsolidatedData and MaintenanceData tables:
+
+````
+-- Create a new view for Power BI reporting
+CREATE VIEW PowerBI_Report_With_Maintenance AS
+SELECT 
+    c.AssetID, 
+    c.Date, 
+    c.TransactionType, 
+    c.Location,
+    SUM(c.CashFlowAmount) as TotalCashFlow,
+    m.MaintenanceActivity,
+    m.MaintenanceCost
+FROM 
+    ConsolidatedData AS c
+JOIN
+    MaintenanceData AS m ON c.AssetID = m.AssetID AND c.Date = m.Date
+GROUP BY 
+    c.AssetID, 
+    c.Date, 
+    c.TransactionType,
+    c.Location,
+    m.MaintenanceActivity,
+    m.MaintenanceCost;
+
+````
+In this example, we create a new view PowerBI_Report_With_Maintenance that includes the maintenance data.
