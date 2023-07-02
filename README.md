@@ -35,9 +35,9 @@ And here is a representation of the SQL file:
 ![image](https://user-images.githubusercontent.com/68539411/226672226-8f33d974-93bc-41d9-907f-6d4f1f0b7cd8.png)
 
 
-### Minimising Data Loss:
+## Minimising Data Loss:
 
-#### Regular Backups.
+### Regular Backups.
 One of the most common ways to minimize data loss is by regularly backing up your database. In SQL Server, you can use the BACKUP DATABASE command to create a full backup of your database. Here's an example:
 
 ````
