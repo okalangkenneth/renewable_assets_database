@@ -61,7 +61,7 @@ CREATE TABLE Solar (
 In this example, the NOT NULL constraint is used to ensure that the ID, Date, TransactionType, and CashFlowAmount columns always have values. If a user tries to insert a record without a value for these columns, the database will return an error.
 
 ### Redundancy
-Redundancy is another strategy for minimizing data loss. This involves storing copies of your data in multiple locations. In a SQL Server environment, you can achieve this using database mirroring or Always On availability groups.
+Redundancy is another strategy for minimizing data loss. This involves storing copies of our data in multiple locations. In a SQL Server environment, we can achieve this using database mirroring or Always On availability groups.
 
 Here's a simple diagram illustrating the concept of redundancy:
 
