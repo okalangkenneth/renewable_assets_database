@@ -38,7 +38,7 @@ And here is a representation of the SQL file:
 ## Minimising Data Loss:
 
 ### Regular Backups.
-One of the most common ways to minimize data loss is by regularly backing up our database. In SQL Server, we use the BACKUP DATABASE command to create a full backup of your database. Here's an example:
+One of the most common ways to minimize data loss is by regularly backing up our database. In SQL Server, we use the BACKUP DATABASE command to create a full backup of our database. Here's an example:
 
 ````
 BACKUP DATABASE RenewableAssetsDB
