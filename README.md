@@ -20,7 +20,7 @@ The project aims to streamline data management and ensure that renewable assets 
 
 ## Objective: 
 
-The objective of this project is to design and implement an efficient data management system that integrates daily trade and cash flow data from six renewable assets into a centralized database, and prepares the data for use in Power BI reports.
+The objective of this project is to design and implement an efficient data management system that integrates daily trade and cash flow data from five renewable assets into a centralized database, and prepares the data for use in Power BI reports.
 
 ## Database Structure for Daily Data:
 
