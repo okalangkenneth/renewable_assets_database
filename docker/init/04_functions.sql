@@ -19,7 +19,6 @@ RETURNS VARCHAR AS $$
 $$ LANGUAGE SQL STABLE;
 
 -- Returns reviews in range enriched with asset and manager context
--- Original was a bare SELECT Review FROM AssetRegistrations
 CREATE OR REPLACE FUNCTION get_reviews_in_range(p_min NUMERIC, p_max NUMERIC)
 RETURNS TABLE (asset_name VARCHAR, manager_name VARCHAR, review_score NUMERIC) AS $$
     SELECT a.asset_name,
@@ -33,6 +32,7 @@ RETURNS TABLE (asset_name VARCHAR, manager_name VARCHAR, review_score NUMERIC) A
 $$ LANGUAGE SQL STABLE;
 
 -- Union of managers and assets (original: dbo.allManagersAndAssets)
+-- Note: ORDER BY wraps the UNION in a subquery so column aliases are visible
 CREATE OR REPLACE FUNCTION get_all_managers_and_assets()
 RETURNS TABLE (first_name VARCHAR, last_name VARCHAR, date_registered DATE, record_type VARCHAR) AS $$
     SELECT * FROM (
@@ -41,7 +41,7 @@ RETURNS TABLE (first_name VARCHAR, last_name VARCHAR, date_registered DATE, reco
         UNION ALL
         SELECT asset_name, site_name, date_created, 'Asset'::VARCHAR AS record_type
         FROM assets
-    ) sub
+    ) combined
     ORDER BY record_type, first_name;
 $$ LANGUAGE SQL STABLE;
 
