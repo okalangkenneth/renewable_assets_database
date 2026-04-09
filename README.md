@@ -2,7 +2,7 @@
 
 A rehabilitated SQL database for managing renewable energy assets across Swedish counties. Originally a SQL Server SSMS export (2022); this version ports the schema to **PostgreSQL 16**, fixes structural issues in the original, and implements the ETL pipeline and reporting views the README described but never delivered.
 
-**[Live Demo](https://okalangkenneth.github.io/renewable_assets_database/demo/)** &nbsp;|&nbsp; **[GitHub](https://github.com/okalangkenneth/renewable_assets_database)**
+**[Live Demo](https://okalangkenneth.github.io/renewable_assets_database/)** &nbsp;|&nbsp; **[GitHub](https://github.com/okalangkenneth/renewable_assets_database)**
 
 ---
 
@@ -126,4 +126,5 @@ This project draws on a background in agricultural and renewable resource econom
 ---
 
 *Kenneth Okalang &nbsp;·&nbsp; [GitHub](https://github.com/okalangkenneth) &nbsp;·&nbsp; [LinkedIn](https://www.linkedin.com/in/kenneth-okalang)*
+
 
