@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Renewable Assets Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg:      #0f1117; --surface: #1a1d27; --border: #2a2d3a;
+      --accent:  #4ade80; --text:    #e2e8f0; --muted:  #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    header {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 1.25rem 2rem; display: flex; align-items: center; gap: 1rem;
+    }
+    header .logo { font-size: 1.6rem; }
+    header h1   { font-size: 1.1rem; font-weight: 600; }
+    header p    { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+    .kpis {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 1rem; padding: 1.5rem 2rem 0;
+    }
+    .kpi {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.1rem 1.4rem;
+    }
+    .kpi h2  { font-size: 0.7rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; margin-bottom: .4rem; }
+    .kpi .n  { font-size: 1.9rem; font-weight: 700; color: var(--accent); }
+    .kpi .sub{ font-size: 0.7rem; color: var(--muted); margin-top: .15rem; }
+    .charts {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px,1fr));
+      gap: 1rem; padding: 1.5rem 2rem 2rem;
+    }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.25rem 1.4rem;
+    }
+    .card h2 { font-size: 0.72rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 1rem; }
+    canvas   { max-height: 260px; }
+    footer   { text-align: center; padding: 1.5rem; font-size: 0.72rem; color: var(--muted); border-top: 1px solid var(--border); }
+    footer a { color: var(--accent); text-decoration: none; }
+    code     { background: #2a2d3a; padding: .1em .4em; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="logo">⚡</span>
+  <div>
+    <h1>Renewable Assets Database &mdash; Live Demo</h1>
+    <p>Portfolio project &nbsp;·&nbsp; PostgreSQL 16 &nbsp;·&nbsp; Docker &nbsp;·&nbsp; Kenneth Okalang</p>
+  </div>
+</header>
+
+<div class="kpis">
+  <div class="kpi"><h2>Total Assets</h2><div class="n">10</div><div class="sub">5 renewable energy types</div></div>
+  <div class="kpi"><h2>Installed Capacity</h2><div class="n">177 MW</div><div class="sub">solar · wind · hydro · geo · biomass</div></div>
+  <div class="kpi"><h2>Annual Revenue</h2><div class="n">3.34M SEK</div><div class="sub">across all registered assets</div></div>
+  <div class="kpi"><h2>Counties</h2><div class="n">11</div><div class="sub">Swedish locations + Finland</div></div>
+  <div class="kpi"><h2>Cash Flow Records</h2><div class="n">18</div><div class="sub">Q1 2024 daily transactions</div></div>
+  <div class="kpi"><h2>Avg Review Score</h2><div class="n">7.9 / 10</div><div class="sub">across all registrations</div></div>
+</div>
+
+<div class="charts">
+
+  <div class="card">
+    <h2>Annual Revenue by Asset Type (SEK)</h2>
+    <canvas id="revenueBar"></canvas>
+  </div>
+
+  <div class="card">
+    <h2>Installed Capacity by Type (MW)</h2>
+    <canvas id="capacityDoughnut"></canvas>
+  </div>
+
+  <div class="card">
+    <h2>Q1 2024 Monthly Revenue (SEK)</h2>
+    <canvas id="cashLine"></canvas>
+  </div>
+
+  <div class="card">
+    <h2>Average Review Score by Type</h2>
+    <canvas id="reviewRadar"></canvas>
+  </div>
+
+</div>
+
+<footer>
+  Data mirrors the PostgreSQL seed exactly &mdash; run the full database with
+  <code>cd docker &amp;&amp; docker-compose up -d</code> &nbsp;&middot;&nbsp;
+  <a href="https://github.com/okalangkenneth/renewable_assets_database" target="_blank">View on GitHub</a>
+</footer>
+
+<script>
+  const C = { Solar:'#facc15', Wind:'#60a5fa', Hydro:'#34d399', Geothermal:'#f87171', Biomass:'#a78bfa' };
+  const P = Object.values(C);
+  Chart.defaults.color       = '#94a3b8';
+  Chart.defaults.borderColor = '#2a2d3a';
+  const gridOpts = { color: '#2a2d3a' };
+
+  // 1. Revenue bar
+  new Chart(document.getElementById('revenueBar'), {
+    type: 'bar',
+    data: {
+      labels: ['Solar','Wind','Hydro','Geothermal','Biomass'],
+      datasets: [{
+        data: [1394000, 801000, 1474000, 154000, 221000],
+        backgroundColor: P, borderRadius: 6, borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { grid: gridOpts, ticks: { callback: v => (v/1000)+'k' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  // 2. Capacity doughnut
+  new Chart(document.getElementById('capacityDoughnut'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Solar','Wind','Hydro','Geothermal','Biomass'],
+      datasets: [{ data: [36.3, 50.75, 73.0, 5.5, 11.2], backgroundColor: P, borderWidth: 2, borderColor: '#1a1d27' }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 12, padding: 14 } },
+        tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed + ' MW' } }
+      }
+    }
+  });
+
+  // 3. Monthly cash flow line
+  new Chart(document.getElementById('cashLine'), {
+    type: 'line',
+    data: {
+      labels: ['January', 'February', 'March'],
+      datasets: [
+        { label:'Solar', data:[95000,88000,102000], borderColor:C.Solar, backgroundColor:C.Solar+'22', tension:.4, fill:true, pointRadius:4 },
+        { label:'Hydro', data:[62000,58000,71000],  borderColor:C.Hydro, backgroundColor:C.Hydro+'22', tension:.4, fill:true, pointRadius:4 },
+        { label:'Wind',  data:[28000,75000,83000],  borderColor:C.Wind,  backgroundColor:C.Wind+'22',  tension:.4, fill:true, pointRadius:4 }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position:'bottom', labels:{ boxWidth:12, padding:14 } } },
+      scales: {
+        y: { grid: gridOpts, ticks: { callback: v => (v/1000)+'k' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  // 4. Review radar
+  new Chart(document.getElementById('reviewRadar'), {
+    type: 'radar',
+    data: {
+      labels: ['Solar','Wind','Hydro','Geothermal','Biomass'],
+      datasets: [{
+        label: 'Avg Review (1-10)',
+        data: [7.5, 7.7, 9.0, 8.0, 7.0],
+        backgroundColor: '#4ade8033',
+        borderColor: '#4ade80',
+        pointBackgroundColor: '#4ade80',
+        pointRadius: 5
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position:'bottom', labels:{ boxWidth:12, padding:14 } } },
+      scales: {
+        r: {
+          min: 0, max: 10,
+          grid: { color:'#2a2d3a' },
+          angleLines: { color:'#2a2d3a' },
+          ticks: { display: false }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>
